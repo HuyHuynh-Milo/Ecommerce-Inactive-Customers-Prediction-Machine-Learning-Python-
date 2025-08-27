@@ -1,4 +1,4 @@
-# 📈 Ecommerce-Inactive-Customers-Analysis-&-Prediction-Python
+# 📈 Ecommerce-Inactive-Customers-Analysis-&-Prediction-Machine Learning(Python)
 
 :warning: Customer churn leads to substantial profit loss in e-commerce businesses. 
 This project aims to identify churn drivers and predict the probability of churn using a full machine learning pipeline using Python. 
