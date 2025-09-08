@@ -4,6 +4,7 @@
 This project aims to identify churn drivers and predict the probability of churn using a full machine learning pipeline using Python. 
 
 <img width="979" height="578" alt="image" src="https://github.com/user-attachments/assets/55b63286-37b0-4275-a35f-f51d88f451b1" />
+
 - Author: Huy Huynh
 - Date: August 2025
 - Tool: Python 
