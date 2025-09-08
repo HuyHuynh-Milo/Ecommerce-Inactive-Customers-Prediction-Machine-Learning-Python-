@@ -13,7 +13,7 @@ This project aims to identify churn drivers and predict the probability of churn
 ---
 ## :memo: Background & Overview:
 
-:dagger: Objective: 
+:dagger: **Objective:** 
 
 This project investigates a customer characteristics dataset using Python in Google Colab, answering questions about churn drivers and behavior most related to the leaving of customers. 
 
@@ -23,7 +23,7 @@ This project investigates a customer characteristics dataset using Python in Goo
 - Building a Machine Learning process and evaluating the best model to predict churn users
 - Clustering churned users to uncover some properties for win-back strategies
 
-:bow_and_arrow: Who is this project for:
+:bow_and_arrow: **Who is this project for:**
 
 - Data analysts & business intelligence professionals
 - Marketing teams optimizing campaign performance
@@ -32,7 +32,7 @@ This project investigates a customer characteristics dataset using Python in Goo
 ## :page_facing_up: Dataset Description & Data Structure 
 :clipboard: Data Source: 
 - The dataset primarily used for this analysis is in the churn_prediction.xlsx file, containing detailed information about each customer's behavior
-- Size: 1 Dataframe contains 20 features and more than 5500 rows
+- Size: 1 Dataframe contains 20 features and more than 550000 rows
   
 [Download the data here](https://docs.google.com/spreadsheets/d/1WDFxP3ipf-b2GnZJ1_8gtnrbBV08R2oH/edit?gid=216773957#gid=216773957)
 
