@@ -245,19 +245,24 @@ importance_df = pd.DataFrame({
     'Feature': feature_names,
     'Importances': importances
 }).sort_values(by = 'Importances', ascending = False)
+```
+- But after encoding the category will got seperate into several small category. For example:
+  - Category: A,B -> Category_A, Category_B
+- Embed it so it returns to normal formula to calculate the sum total of each category's features
 
-# Draw a plot for the importance data with the original categories (without encode)
+```python
+# Split the encoded category features so it can be embeded (sum the total importance)
 import re
 
 # Function to extract base (original) feature name
 def get_base_feature(col):
-    return re.split(r'_[^_]+$', col)[0] if '_' in col else col
+    return re.split(r'_[^_]+$', col)[0] if '_' in col else col     # Split the feature and Get the thing before the "_"
 
 # Add base feature column
 importance_df['BaseFeature'] = importance_df['Feature'].apply(get_base_feature)
 # print(importance_df)
 
-# Group importances by base feature and sum the the importances we have split 
+# Group importances by base feature and sum the importances we have split 
 grouped_importance = importance_df.groupby('BaseFeature')['Importances'].sum().reset_index()
 grouped_importance = grouped_importance.sort_values(by='Importances', ascending=False)
 
