@@ -393,7 +393,33 @@ plt.show()
 
 **b. Categorical features:**
 - Plot the churn percentage for each category to see the trend:
-  
+
+ ```python
+category_cols = cate_cols.columns
+
+sns.set(style = 'whitegrid')
+for col in category_cols:
+  # Calculate churn percentage
+  churn_pct = churn_df.groupby(col)['Churn'].mean().sort_values()*100
+
+  # Plot
+  plt.figure(figsize = (7,5))
+  sns.barplot(x = churn_pct.index, y = churn_pct.values, palette='viridis')
+
+  # Add number above each bar:
+  for i, value in enumerate(churn_pct.values):
+    plt.text(i, value + 0.3, f"{value:.1f}%", ha='center', va='bottom', fontsize=10)
+
+  # Setting the plot
+  plt.title(f'Churn percentage of each {col}')
+  plt.xlabel(col)
+  plt.ylabel('% of churn')
+  plt.xticks(rotation = 45)
+  plt.tight_layout()
+  plt.grid(True, linewidth=0.5, alpha=0.5)
+  plt.show()
+```
+ 
 **PreferedLoginDevice:**
   <img width="888" height="566" alt="image" src="https://github.com/user-attachments/assets/32ba662f-be53-457c-9a7c-b862f647954d" />
 
