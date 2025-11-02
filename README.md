@@ -136,6 +136,30 @@ for col in churn_filled.columns:
 - Investigate outliers in numeric columns using boxplot & histogram.
 - 4 columns have unreasonably large outliers that could be removed (the outliers)
 
+```python
+# Check the distribution of numeric data
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+cols = churn_filled.select_dtypes(exclude=['object'])
+
+for col in cols:
+  plt.figure(figsize=(10, 6))
+
+# Boxplot on left
+  plt.subplot(1, 2, 1)
+  sns.boxplot(y=churn_filled[col], color='skyblue')
+  plt.title(f'Boxplot of {col}')
+
+# Histogram on right
+  plt.subplot(1, 2, 2)
+  sns.histplot(churn_filled[col], kde=True, bins=30, color='lightgreen')
+  plt.title(f'Histogram of {col}')
+
+  plt.tight_layout()
+  plt.show()
+```
+
 **Tenure:**
   <img width="1098" height="653" alt="image" src="https://github.com/user-attachments/assets/8590bc29-66b3-4985-baf2-d7f0ff371394" />
 **WarehouseToHome:**
