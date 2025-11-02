@@ -301,13 +301,63 @@ plt.show()
 ```
 <img width="1280" height="735" alt="image" src="https://github.com/user-attachments/assets/870840ab-532d-403c-ac01-c0382ccef39c" />
 
-- So the top 5 things to effect the most on the churn is:
+- So the top 5 things that affect the most on the churn are:
   - Tenure,
   - Chash back,
   - Distance from warehouse to customer,
   - Complain
-  - Day since last order.
+  - Days since last order.
 - Dive into these features and find some insight:
+
+```python
+# Dive into these features
+important_cols = ['Tenure','CashbackAmount','WarehouseToHome','DaySinceLastOrder']
+
+churn_quantile = churn_df.copy()
+
+# Create a loop through these column to calculate % churn each category
+for col in important_cols:
+  # Using qcut to cut the quantile to 4
+  churn_quantile[f'{col}_Quantile'] = pd.qcut(churn_quantile[col],q = 4)
+
+  # Create churn_rate df to store % churn
+  churn_rate = churn_quantile.groupby(f'{col}_Quantile')['Churn'].mean().reset_index()
+  churn_rate['Churn'] = churn_rate['Churn']*100
+  churn_rate = churn_rate.sort_values(by = 'Churn', ascending = False)
+
+  # Plot these features:
+  plt.figure(figsize= (8,5))
+  blue_palette = sns.color_palette("Blues", n_colors = len(churn_rate))[::-1] # Setting color of the bars
+  sns.barplot(x = f'{col}_Quantile', y = 'Churn', data = churn_rate, palette = blue_palette)
+
+  # Create number on columns head
+  for i,row in churn_rate.iterrows():
+    plt.text(x = i, y = row['Churn'] + 0.3, s = f"{row['Churn']:.1f}%", ha= 'center')
+
+  # Plot
+  plt.title(f'Churn rate of {col}')
+  plt.ylabel('Churn rate')S
+  plt.tight_layout()
+  plt.show()
+
+
+# Create % Churn for Complain Feature:
+complain_churn_rate = churn_quantile.groupby('Complain')['Churn'].mean().reset_index()
+complain_churn_rate['Churn'] = complain_churn_rate['Churn']*100
+
+# Plot % Churn for complain
+plt.figure(figsize= (7,5))
+blue_palette = sns.color_palette("Blues", n_colors = len(complain_churn_rate))[::-1]
+sns.barplot(x = 'Complain', y = 'Churn', data = complain_churn_rate, palette = blue_palette)
+
+for i,row in complain_churn_rate.iterrows():
+  plt.text(x = i, y = row['Churn']+ 0.5, s = f"{row['Churn']:.1f}%", ha='center')
+
+plt.title('Churn rate of Complain')
+plt.ylabel('Churn rate')
+plt.tight_layout()
+plt.show()
+```
 
 **Tenure:**
 <img width="1001" height="604" alt="image" src="https://github.com/user-attachments/assets/a7434643-4c78-4a47-b13c-9b2e56afea92" />
